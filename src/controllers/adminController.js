@@ -447,6 +447,50 @@ async function GetNotificationByFilterController(req, res){
     }
 }
 
+async function ResetPasswordUserController(req, res) {
+    try {
+
+        const { user_id , password} = req.body;
+        
+        if (!user_id || isNaN(user_id)) {
+            return res.status(400).json({ error: "id_user inválido", success: false });
+        }
+
+        if(!password){
+            return res.status(400).json({error : "Password inválida", success: false});
+        }
+
+        const result = await userService.ResetPasswordService(user_id, password);
+
+        return res.status(200).json({message : "Password resetada com sucesso", success : true});
+
+
+    } catch (error) {
+        return res.status(400).json({ error: error.message, success: false });
+    }
+}
+
+
+
+async function ResetPasswordAdminController(req, res) {
+    try {
+        const user_id = req.user.sub;
+        const { password} = req.body;
+        
+        if(!password){
+            return res.status(400).json({error : "Password inválida", success: false});
+        }
+
+        const result = await adminService.ResetPasswordService(user_id, password);
+
+        return res.status(200).json({message : "Password resetada com sucesso", success : true});
+
+
+    } catch (error) {
+        return res.status(400).json({ error: error.message, success: false });
+    }
+}
+
 
 export default {
     GetAllUsersController,
@@ -456,5 +500,7 @@ export default {
     UpdateNotificationController,
     DeleteNotificationController,
     GetAllNotificationsController,
-    GetNotificationByFilterController
+    GetNotificationByFilterController,
+    ResetPasswordUserController,
+    ResetPasswordAdminController
 };

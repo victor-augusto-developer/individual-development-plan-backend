@@ -74,7 +74,7 @@ async function GetPdisController(req, res) {
     try {
 
         const result = await cache.remember(
-            `pdi:${req.user.sub}`,
+            `users:pdi:${req.user.sub}`,
             300,
             () => service.GetPDIService(req.user.sub)
         );

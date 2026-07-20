@@ -1,4 +1,5 @@
 import db from "../config/supabase.js"
+import bcrypt from "bcryptjs";
 
 
 async function GetAllUsersService(page = 1, limit = 8) {
@@ -122,8 +123,27 @@ async function GetAllUsersFiltered(filters = {}, page = 1, limit = 8){
 }
 
 
+async function ResetPasswordService(id_user, password) {
+    const hash = await bcrypt.hash(password, 10);
+
+    const { data, error } = await db
+        .from("users")
+        .update({ password: hash })
+        .eq("id", id_user)
+        .eq("role", "admin")
+        .select()
+        .single();
+
+    if (error) {
+        throw new Error(error.message);
+    }
+
+    return data;
+}
+
 
 export default {
     GetAllUsersService,
-    GetAllUsersFiltered
+    GetAllUsersFiltered,
+    ResetPasswordService
 };

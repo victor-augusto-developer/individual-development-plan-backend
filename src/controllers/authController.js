@@ -37,8 +37,6 @@ async function LoginController(req, res) {
             data: result,
         });
     } catch (error) {
-        console.error(error);
-
         switch (error.message) {
             case "INVALID_CREDENTIALS":
                 return res.status(401).json({
@@ -47,6 +45,7 @@ async function LoginController(req, res) {
                 });
 
             default:
+                console.error(error);
                 return res.status(500).json({
                     success: false,
                     error: "Erro interno do servidor.",
