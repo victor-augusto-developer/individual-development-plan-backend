@@ -13,12 +13,13 @@ export async function getRedis() {
 
     try {
 
-        if (!process.env.REDIS_URL) {
+        if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
             return null;
         }
 
         redis = createClient({
-            url: process.env.REDIS_URL
+            url: process.env.UPSTASH_REDIS_REST_URL,
+            token: process.env.UPSTASH_REDIS_REST_TOKEN
         });
 
         await redis.connect();

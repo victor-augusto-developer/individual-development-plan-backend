@@ -3,7 +3,7 @@ import Middlewares from "../middlewares/authMiddleware.js"
 import Controllers from "../controllers/adminController.js"
 
 const adminRoute = express.Router();
-//adminRoute.use(Middlewares.authMiddleware, Middlewares.adminOnly);
+adminRoute.use(Middlewares.authMiddleware, Middlewares.adminOnly);
 
 adminRoute.get("/users/all", Controllers.GetAllUsersController);
 adminRoute.get("/users/pdi/:id", Controllers.GetPDIByIdController);
