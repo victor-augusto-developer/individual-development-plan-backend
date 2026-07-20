@@ -13,7 +13,7 @@
   "license": "ISC",
   "author": "Victor Augusto & Davi Lima",
   "type": "module",
-  "main": "src/server.js",
+  "main": "src/app.js",
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
