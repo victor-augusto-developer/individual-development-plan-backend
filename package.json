@@ -1,0 +1,36 @@
+{
+  "name": "backend-pdi",
+  "version": "1.0.0",
+  "description": "Backend API for Individual Development Plan (IDP) management.",
+  "homepage": "https://github.com/victor-augusto-developer/individual-development-plan-backend#readme",
+  "bugs": {
+    "url": "https://github.com/victor-augusto-developer/individual-development-plan-backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victor-augusto-developer/individual-development-plan-backend.git"
+  },
+  "license": "ISC",
+  "author": "Victor Augusto & Davi Lima",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.110.7",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "firebase-admin": "^14.2.0",
+    "node-cache": "^5.1.2",
+    "redis": "^6.1.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
